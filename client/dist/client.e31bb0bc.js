@@ -7609,6 +7609,7 @@ var SNAKE_COLOUR = '#c2c2c2';
 var FOOD_COLOUR = '#e66916';
 var socket = (0, _socket.default)('http://localhost:3000');
 socket.on('init', handleInit);
+socket.on('gameState', handleGameState);
 var gameScreen = document.getElementById('gameScreen');
 var canvas, ctx;
 var gameState = {
@@ -7690,6 +7691,13 @@ paintGame(gameState);
 
 function handleInit(msg) {
   console.log(msg);
+}
+
+function handleGameState(gameState) {
+  gameState = JSON.parse(gameState);
+  requestAnimationFrame(function () {
+    return paintGame(gameState);
+  });
 }
 },{"socket.io-client":"node_modules/socket.io-client/build/index.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
